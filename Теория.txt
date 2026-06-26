@@ -1301,9 +1301,148 @@ TEXT
 
 
 
+#Слайдер
 
 
 
+HTML code:
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Slider</h1>
+
+        <button class="slider-prev">One</button>
+        <button class="slider-next">Two</button>
+
+        <div class="slider">
+            <div class="slider-line">
+                <img src="" alt="Priv">
+                <img src="" alt="Darov">
+                <img src="" alt="Poka">
+                <img src="" alt="Ingv">
+            </div>
+        </div>
+
+    <script src="java.js"></script>
+</body>
+
+</html>
+
+
+
+#CSS code:
+
+* {
+    margin: 0;
+    /* box-sizing: border-box; */
+}
+
+html, body {
+    font-size: 18px;
+    font-family: sans-serif;
+}
+
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    background: red;
+    padding: 30px;
+}
+
+button:hover {
+    background: orangered;
+}
+
+button:active {
+    background: #000;
+    color: #fff;
+}
+
+button {
+    background: none;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: .9rem;
+}
+
+.courses {
+    margin-top: 40px;
+}
+
+.courses a {
+    color: #222;
+}
+
+.courses li {
+    margin-bottom: 20px;
+}
+
+.slider-line {
+    width: 1024px;
+    height: 256px;
+    display: flex;
+    background: green;
+    position: relative;
+    left: 0;
+    transition: all ease 1s;
+}
+
+.slider {
+    border: 1px solid black;
+    width: 256px;
+    height: 256px;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+
+
+#JS code:
+
+let offset = 0;
+const sliderLine = document.querySelector('.slider-line');
+
+document.querySelector('.slider-next').addEventListener('click', function(){
+    offset = offset + 256;
+    if (offset > 768) {
+        offset = 0;
+    }
+    sliderLine.style.left = -offset + 'px';
+});
+
+document.querySelector('.slider-prev').addEventListener('click', function () {
+    offset = offset - 256;
+    if (offset < 0) {
+        offset = 768;
+    }
+    sliderLine.style.left = -offset + 'px';
+});
+
+
+
+
+
+
+
+
+#Калькулятор
 
 CSS code:
 
