@@ -1293,3 +1293,189 @@ M:M -
 тип данных:
 VARCHAR(0-255)
 TEXT
+
+
+
+
+
+
+
+
+
+
+
+
+CSS code:
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    gap: 5px;
+}
+
+.number-menu {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.js-input-a {
+    height: 50px;
+    width: 75px;
+}
+
+.js-input-b {
+    height: 50px;
+    width: 75px;
+}
+
+.js-select-operation {
+    height: 50px;
+    width: 50px;
+}
+
+.js-btn-reuslt {
+    height: 75px;
+    width: 75px;
+}
+
+.js-output {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75px;
+    width: 75px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+}
+
+
+HTML code:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main>
+
+        <div class="number-menu">
+
+            <input class="js-input-a" type="number">
+
+            <input class="js-input-b" type="number">
+
+
+            <select class="js-select-operation">
+
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="/">*</option>
+                <option value="*">/</option>
+
+            </select>
+
+            <button class="js-btn-reuslt">Результат</button>
+
+            <p class="js-output"> </p> 
+
+        </div>
+
+        <script src="java.js"></script>
+
+    </main>
+
+</body>
+
+</html>
+
+
+Java script code:
+
+function sum (a,b){
+    return a+b ;
+}
+
+function min (a,b){
+    return a-b ;
+}
+
+function del (a,b){
+    if(b===0){
+        return "Ошибка деление на ноль";
+    }
+    return a/b ;
+}
+
+function um (a,b){
+    return a*b ;
+}
+
+/*Основная функция для калькулятора*/
+
+const OPERATION = {
+    sum: '+',
+    min: '-',
+    del: '/',
+    um: '*'
+};
+
+function calculator ({a,b, operation}){
+    let result = null;
+    switch (operation) {
+        case OPERATION.sum:
+            result= sum(a,b);
+            
+            break;
+
+     case OPERATION.min:
+            result= min(a,b);
+            
+            break;
+
+     case OPERATION.del:
+            result= del(a,b);
+            
+            break;
+
+     case OPERATION.um:
+            result= um(a,b);
+            
+            break;    
+    }
+
+return result;
+
+}
+
+/*Интерфейс*/
+
+const inputA = document.querySelector (".js-input-a");
+const inputB = document.querySelector (".js-input-b");
+const selectorOperation = document.querySelector (".js-select-operation");
+const btnResult = document.querySelector(".js-btn-reuslt");
+const output = document.querySelector(".js-output");
+
+btnResult.addEventListener('click', function() {
+    const a = Number(inputA.value);
+    const b = Number(inputB.value);
+    const operation = selectorOperation.value;
+
+    const result = calculator({
+        a,
+        b,
+        operation
+    });
+    
+    if (output){
+        output.textContent = result
+    };
+});
